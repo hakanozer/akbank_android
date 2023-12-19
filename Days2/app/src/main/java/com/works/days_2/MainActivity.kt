@@ -3,6 +3,7 @@ package com.works.days_2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.works.days_2.datas.Category
 import com.works.days_2.datas.Product
 import com.works.days_2.models.IAddress
 import com.works.days_2.models.IProduct
@@ -160,8 +161,19 @@ class MainActivity : AppCompatActivity() {
         Log.d("name", customer.userName())
         Log.d("total", customer.userTotal().toString())
 
-        val p1 = Product("TV", "TV Detail", 10000)
-        Log.d("Product", p1.toString())
+        val cat1 = Category(1, "Elektronik")
+        val p1 = Product("TV", "TV Detail", 10000, cat1)
+
+        val cat2 = Category(2, "Telefon")
+        val p2 = Product("Phone", "Phone Detail", 20000, cat2)
+
+        val list = mutableListOf<Product>()
+        list.add(p1)
+        list.add(p2)
+
+        for(item in list) {
+            Log.d("title", item.category.name)
+        }
 
 
     }
