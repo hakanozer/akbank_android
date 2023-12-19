@@ -3,9 +3,11 @@ package com.works.days_2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.works.days_2.datas.Product
 import com.works.days_2.models.IAddress
 import com.works.days_2.models.IProduct
 import com.works.days_2.models.ProductImpl
+import com.works.days_2.useAbstract.Customer
 import com.works.days_2.utils.EApp
 import com.works.days_2.utils.Profile
 import com.works.days_2.utils.Settings
@@ -153,6 +155,14 @@ class MainActivity : AppCompatActivity() {
         val pro = ProductImpl()
         val pro1: IProduct = ProductImpl()
         val pro2: IAddress = ProductImpl()
+
+        val customer = Customer(100)
+        Log.d("name", customer.userName())
+        Log.d("total", customer.userTotal().toString())
+
+        val p1 = Product("TV", "TV Detail", 10000)
+        Log.d("Product", p1.toString())
+
 
     }
 
