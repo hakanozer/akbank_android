@@ -3,7 +3,13 @@ package com.works.days_2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.works.days_2.models.IAddress
+import com.works.days_2.models.IProduct
+import com.works.days_2.models.ProductImpl
 import com.works.days_2.utils.EApp
+import com.works.days_2.utils.Profile
+import com.works.days_2.utils.Settings
+import java.util.Scanner
 import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
@@ -130,6 +136,23 @@ class MainActivity : AppCompatActivity() {
         map1.put(EApp.AGE, 30)
         Log.d("EApp", map1.toString())
 
+
+        // OOP
+        val settings = Settings(25, "newData")
+        val countY = settings.fnc1("Kotlin", 10, "optional")
+        countY?.let {
+            if (it > 20) {
+
+            }
+        }
+
+        val profile = Profile()
+        val sum = profile.call()
+        Log.d("Sum", sum.toString())
+
+        val pro = ProductImpl()
+        val pro1: IProduct = ProductImpl()
+        val pro2: IAddress = ProductImpl()
 
     }
 
