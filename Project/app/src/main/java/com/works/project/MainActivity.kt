@@ -10,7 +10,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
+import com.works.project.configs.ApiClient
 import com.works.project.models.Customer
+import com.works.project.models.JWTUser
+import com.works.project.models.User
+import com.works.project.services.DummyService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var l_txtPassword: EditText
     lateinit var l_btnSend: Button
     lateinit var l_btnSingUp: Button
+    lateinit var dummyService: DummyService
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         l_txtPassword = findViewById(R.id.l_txtPassword)
         l_btnSend = findViewById(R.id.l_btnSend)
         l_btnSingUp = findViewById(R.id.l_btnSingUp)
+
+        dummyService = ApiClient().getClient().create(DummyService::class.java)
 
         // Username Text Change
         l_txtUsername.addTextChangedListener {
@@ -42,7 +53,27 @@ class MainActivity : AppCompatActivity() {
 
     // Send Click
     val sendClick = View.OnClickListener {
-        Log.d("sendClick", "Call")
+        val username = l_txtUsername.text.toString()
+        val password = l_txtPassword.text.toString()
+        val jwtUser = JWTUser(username, password)
+        dummyService.login(jwtUser).enqueue( object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                val status = response.code()
+                if (status == 200) {
+                    val data = response.body()
+                    data?.let {
+                        Log.d("json", "Login Success ${it}")
+                    }
+                }else {
+                    Log.d("json", "Username or Password Fail!")
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Log.e("json", "onFailure: ", t )
+            }
+        })
+
     }
 
     // SingUp Click
