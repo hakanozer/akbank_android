@@ -31,6 +31,7 @@
         android:fontFamily="@font/roboto"
         android:hint="Username"
         android:inputType="textPersonName"
+        android:text="kminchelle"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -44,6 +45,7 @@
         android:fontFamily="@font/roboto"
         android:hint="Password"
         android:inputType="textPassword"
+        android:text="0lelplR"
         app:layout_constraintEnd_toEndOf="@+id/l_txtUsername"
         app:layout_constraintStart_toStartOf="@+id/l_txtUsername"
         app:layout_constraintTop_toBottomOf="@+id/l_txtUsername" />
