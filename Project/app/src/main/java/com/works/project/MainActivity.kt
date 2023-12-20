@@ -16,6 +16,7 @@ import androidx.core.widget.addTextChangedListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.works.project.configs.ApiClient
+import com.works.project.configs.Util
 import com.works.project.models.Customer
 import com.works.project.models.JWTUser
 import com.works.project.models.User
@@ -39,6 +40,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val user = Util().getUser(this)
+        user?.let {
+            //Log.d("user", it.token)
+        }
 
         l_txtUsername = findViewById(R.id.l_txtUsername)
         l_txtPassword = findViewById(R.id.l_txtPassword)
@@ -81,9 +87,12 @@ class MainActivity : AppCompatActivity() {
                         data?.let {
                             val gson = Gson()
                             val data:String = gson.toJson(it)
-                            Log.d("json", data)
                             editor.putString("user", data)
                             editor.commit()
+                            editor.apply()
+                            val intent = Intent(this@MainActivity, Dashboard::class.java)
+                            startActivity(intent)
+                            finish()
                         }
                     }else {
                         Snackbar.make(l_btnSend, "Username or Password Fail!", Snackbar.LENGTH_LONG).show()
