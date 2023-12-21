@@ -8,9 +8,74 @@
 
     <TextView
         android:id="@+id/d_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/roboto"
+        android:textAlignment="center"
+        android:textColor="#3F51B5"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/d_img"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@+id/d_title"
+        app:layout_constraintStart_toStartOf="@+id/d_title"
+        app:layout_constraintTop_toBottomOf="@+id/d_title" />
+
+    <TextView
+        android:id="@+id/d_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="20dp" />
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto"
+        android:textAlignment="textEnd"
+        android:textColor="#FF9800"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/d_img"
+        app:layout_constraintTop_toBottomOf="@+id/d_img" />
+
+    <TextView
+        android:id="@+id/d_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/d_img"
+        app:layout_constraintStart_toStartOf="@+id/d_img"
+        app:layout_constraintTop_toBottomOf="@+id/d_price" />
+
+    <RatingBar
+        android:id="@+id/d_rating"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:numStars="5"
+        android:progressTint="#E91E63"
+        android:rating="0"
+        app:layout_constraintStart_toStartOf="@+id/d_img"
+        app:layout_constraintTop_toBottomOf="@+id/d_img" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="#673AB7"
+        app:layout_constraintBottom_toBottomOf="@+id/d_img"
+        app:layout_constraintEnd_toEndOf="@+id/d_img"
+        app:layout_constraintStart_toStartOf="@+id/d_img"
+        app:layout_constraintTop_toTopOf="@+id/d_img" />
 </androidx.constraintlayout.widget.ConstraintLayout>
