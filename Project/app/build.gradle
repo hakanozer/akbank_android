@@ -44,4 +44,5 @@ dependencies {
 
     implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.9.0'
     implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
+    implementation group: 'com.github.bumptech.glide', name: 'glide', version: '4.16.0'
 }
