@@ -1,8 +1,10 @@
 package com.works.project
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import com.works.project.configs.Util
 
@@ -23,5 +25,18 @@ class Dashboard : AppCompatActivity() {
         }
 
     }
+
+
+    // goto product
+    fun gotoProduct( view: View ) {
+        val intent = Intent(this@Dashboard, ProductActivity::class.java)
+        startActivity(intent)
+    }
+
+    // goto likes
+    fun gotoLikes( view: View ) {
+        Log.d("goto", "gotoLikes: call ")
+    }
+
 
 }

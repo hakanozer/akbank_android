@@ -20,4 +20,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:background="#80E3E3E3"
+        android:onClick="gotoProduct"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:tint="#E91E63"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/d_txtTitle"
+        app:srcCompat="@drawable/product_icon" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="70dp"
+        android:background="#80E3E3E3"
+        android:onClick="gotoLikes"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:tint="#E91E63"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/d_txtTitle"
+        app:srcCompat="@drawable/likes_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
