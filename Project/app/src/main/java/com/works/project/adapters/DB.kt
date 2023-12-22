@@ -1,5 +1,6 @@
 package com.works.project.adapters
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -26,6 +27,28 @@ class DB ( val context: Context) : SQLiteOpenHelper( context, "project.db", null
         val likesSql = "drop table if exists likes"
         db?.execSQL(likesSql)
         onCreate(db)
+    }
+
+
+    fun addLike( pid: Long ) : Long {
+        val db = this.writableDatabase
+        var returnID:Long = -1
+        try {
+            val values = ContentValues()
+            values.put("pid", pid)
+            returnID = db.insert("likes", null, values)
+        }catch (ex: Exception) {
+
+        }
+        db.close()
+        return returnID
+    }
+
+    fun removeLike (pid: Long) : Int {
+        val db = this.writableDatabase
+        var status = db.delete("likes", "pid = $pid", null)
+        db.close()
+        return status
     }
 
 
