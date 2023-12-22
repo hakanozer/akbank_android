@@ -35,7 +35,8 @@ class Dashboard : AppCompatActivity() {
 
     // goto likes
     fun gotoLikes( view: View ) {
-        Log.d("goto", "gotoLikes: call ")
+        val intent = Intent(this@Dashboard, Likes::class.java)
+        startActivity(intent)
     }
 
 

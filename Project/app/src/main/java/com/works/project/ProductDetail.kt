@@ -1,5 +1,7 @@
 package com.works.project
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +27,7 @@ class ProductDetail : AppCompatActivity() {
 
     lateinit var db: DB
     var item: Product? = null
+    var likeStatus = false
 
     lateinit var dummyService: DummyService
     lateinit var d_title: TextView
@@ -48,6 +51,7 @@ class ProductDetail : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         btn_like = findViewById(R.id.btn_like)
         btn_like.setOnClickListener(addLikeClick)
+        btn_like.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN)
 
         val id = intent.getLongExtra("id", 0)
         if (id > 0) {
@@ -66,6 +70,10 @@ class ProductDetail : AppCompatActivity() {
                             d_price.setText("${it.price}₺")
                             d_detail.setText(it.description)
                             progressBar.visibility = View.INVISIBLE
+                            likeStatus = db.singleLike(it.id)
+                            if (likeStatus == true) {
+                                btn_like.setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN)
+                            }
                         }
                     }
                 }
@@ -91,13 +99,18 @@ class ProductDetail : AppCompatActivity() {
     val addLikeClick = View.OnClickListener {
         val view = it
         item?.let {
-            val status = db.addLike(it.id)
-            if (status > -1) {
-                Snackbar.make(view, "Like Add Success", Snackbar.LENGTH_LONG).show()
+            if (!likeStatus) {
+                val status = db.addLike(it.id)
+                if (status > -1) {
+                    btn_like.setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN)
+                    Snackbar.make(view, "Like Add Success", Snackbar.LENGTH_LONG).show()
+                    likeStatus = true
+                }
             }else {
-               val deleteStatus = db.removeLike(it.id)
+                val deleteStatus = db.removeLike(it.id)
                 if (deleteStatus > 0) {
-
+                    btn_like.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN)
+                    likeStatus = false
                 }
             }
         }

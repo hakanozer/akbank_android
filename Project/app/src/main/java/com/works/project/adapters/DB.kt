@@ -33,13 +33,9 @@ class DB ( val context: Context) : SQLiteOpenHelper( context, "project.db", null
     fun addLike( pid: Long ) : Long {
         val db = this.writableDatabase
         var returnID:Long = -1
-        try {
-            val values = ContentValues()
-            values.put("pid", pid)
-            returnID = db.insert("likes", null, values)
-        }catch (ex: Exception) {
-
-        }
+        val values = ContentValues()
+        values.put("pid", pid)
+        returnID = db.insert("likes", null, values)
         db.close()
         return returnID
     }
@@ -49,6 +45,26 @@ class DB ( val context: Context) : SQLiteOpenHelper( context, "project.db", null
         var status = db.delete("likes", "pid = $pid", null)
         db.close()
         return status
+    }
+
+    fun singleLike( pid: Long ) : Boolean {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("select * from likes where pid = $pid", null)
+        val status = cursor.moveToNext()
+        db.close()
+        return status
+    }
+
+    fun allLikes () : List<Long> {
+        val db = this.readableDatabase
+        val arr = mutableListOf<Long>()
+        val cursor = db.query("likes", null, null, null, null, null, null)
+        while (cursor.moveToNext()) {
+            val pid = cursor.getLong(1)
+            arr.add(pid)
+        }
+        db.close()
+        return arr
     }
 
 
